@@ -4,6 +4,7 @@ import com.uptc.frw.ferialibroweb.model.Book;
 import com.uptc.frw.ferialibroweb.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,5 +20,10 @@ public class BookController {
     @GetMapping
     public List<Book> getAll() {
         return bookService.findAllBook();
+    }
+
+    @GetMapping("/{id}")
+    public Book getById(@PathVariable Long id) {
+        return bookService.findBookById(id);
     }
 }
