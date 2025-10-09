@@ -1,5 +1,6 @@
 package com.uptc.frw.ferialibroweb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -15,9 +16,11 @@ public class Bill {
     private long personId;
     @Column(name = "FECHA")
     private Date date;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ID_PERSONA")
     private Person person;
+    @JsonIgnore
     @OneToMany(mappedBy = "bill")
     private List<BillDetail> billDetails;
 

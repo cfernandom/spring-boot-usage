@@ -20,4 +20,24 @@ public class BookService {
     public Book findBookById(Long id) {
         return bookRepository.findById(id).orElse(null);
     }
+
+    public Book saveBook(Book book) {
+        return bookRepository.save(book);
+    }
+
+    public Book updateBook(Book book) {
+        Book newBook = findBookById(book.getId());
+        if (newBook == null) {
+            throw new RuntimeException("Registros no encontrado");
+        }
+        newBook.setTitle(book.getTitle());
+        newBook.setPrice(book.getPrice());
+        saveBook(newBook);
+
+        return newBook;
+    }
+
+    public void deleteBook(Long id) {
+        bookRepository.deleteById(id);
+    }
 }

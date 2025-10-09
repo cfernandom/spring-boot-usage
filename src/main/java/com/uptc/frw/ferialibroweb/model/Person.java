@@ -1,5 +1,6 @@
 package com.uptc.frw.ferialibroweb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -16,8 +17,10 @@ public class Person {
     private String lastName;
     @Column(name = "NACIONALIDAD")
     private String nationality;
+    @JsonIgnore
     @OneToMany(mappedBy = "person")
     private List<Bill> bills;
+    @JsonIgnore
     @ManyToMany(mappedBy = "authors")
     private List<Book> books;
 

@@ -3,10 +3,7 @@ package com.uptc.frw.ferialibroweb.controller;
 import com.uptc.frw.ferialibroweb.model.Book;
 import com.uptc.frw.ferialibroweb.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,20 @@ public class BookController {
     @GetMapping("/{id}")
     public Book getById(@PathVariable Long id) {
         return bookService.findBookById(id);
+    }
+
+    @PostMapping
+    public Book save(@RequestBody Book book) {
+        return bookService.saveBook(book);
+    }
+
+    @PutMapping
+    public Book update(@RequestBody Book book) {
+        return bookService.updateBook(book);
+    }
+
+    @DeleteMapping
+    public void delete(@RequestParam Long id) {
+        bookService.deleteBook(id);
     }
 }
