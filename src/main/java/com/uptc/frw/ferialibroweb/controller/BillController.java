@@ -3,10 +3,7 @@ package com.uptc.frw.ferialibroweb.controller;
 import com.uptc.frw.ferialibroweb.model.Bill;
 import com.uptc.frw.ferialibroweb.service.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,10 @@ public class BillController {
     @GetMapping("/{id}")
     public Bill getById(@PathVariable Long id) {
         return billService.findBillById(id);
+    }
+
+    @PostMapping
+    public Bill save(@RequestBody Bill bill) {
+        return billService.saveBill(bill);
     }
 }
